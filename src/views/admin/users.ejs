@@ -1,0 +1,107 @@
+<%- include('../partials/header', { title: 'User Management' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-y-4 sm:gap-0">
+    <div>
+      <h1 class="page-title">User Management</h1>
+      <p class="page-subtitle">Approve, deny, or manage user roles</p>
+    </div>
+  </div>
+
+  <% if (typeof success !== 'undefined' && success) { %>
+    <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg" role="alert">
+      <p class="text-emerald-700 text-sm"><%= success %></p>
+    </div>
+  <% } %>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+      <p class="text-red-700 text-sm"><%= error %></p>
+    </div>
+  <% } %>
+
+  <div class="card overflow-x-auto sm:overflow-hidden -mx-4 sm:mx-0">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="bg-surface text-left">
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Name</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Email</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Role</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Status</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Registered</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-surface-border">
+        <% if (users && users.length > 0) { %>
+          <% users.forEach(function(u) { %>
+            <tr class="hover:bg-surface">
+              <td class="px-3 sm:px-6 py-4 font-medium text-sidebar-text"><%= u.name %></td>
+              <td class="px-3 sm:px-6 py-4 text-sidebar-muted"><%= u.email %></td>
+              <td class="px-3 sm:px-6 py-4">
+                <form action="/admin/users/<%= u._id %>/role" method="POST" class="flex flex-wrap items-center gap-1.5">
+                  <select name="role" class="text-xs rounded border border-surface-border px-2 py-1.5 text-sidebar-text">
+                    <option value="user" <%= u.role === 'user' ? 'selected' : '' %>>User</option>
+                    <option value="manager" <%= u.role === 'manager' ? 'selected' : '' %>>Manager</option>
+                    <option value="security" <%= u.role === 'security' ? 'selected' : '' %>>Security</option>
+                    <option value="admin" <%= u.role === 'admin' ? 'selected' : '' %>>Admin</option>
+                  </select>
+                  <% if (depots && depots.length > 0) { %>
+                    <select name="depotSite" class="text-xs rounded border border-surface-border px-2 py-1.5 text-sidebar-text">
+                      <option value="">No depot</option>
+                      <% depots.forEach(function(d) { %>
+                        <option value="<%= d._id %>" <%= u.depotSite && u.depotSite.toString() === d._id.toString() ? 'selected' : '' %>><%= d.name %></option>
+                      <% }); %>
+                    </select>
+                  <% } %>
+                  <button type="submit" class="btn-primary !text-xs !px-3 !py-1.5">
+                    <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    Update
+                  </button>
+                </form>
+              </td>
+              <td class="px-3 sm:px-6 py-4">
+                <% if (u.status === 'approved') { %>
+                  <span class="badge-fulfilled">Approved</span>
+                <% } else if (u.status === 'pending') { %>
+                  <span class="badge-pending">Pending</span>
+                <% } else if (u.status === 'denied') { %>
+                  <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-red-50 text-red-700 border border-red-200">Denied</span>
+                <% } %>
+              </td>
+              <td class="px-3 sm:px-6 py-4 text-sidebar-muted text-xs"><%= new Date(u.createdAt).toLocaleDateString('en-GB') %></td>
+              <td class="px-3 sm:px-6 py-4">
+                <div class="flex items-center space-x-2">
+                  <% if (u.status === 'pending') { %>
+                    <form action="/admin/users/<%= u._id %>/approve" method="POST" class="inline">
+                      <button type="submit" class="btn-primary !text-xs !px-3 !py-1.5">
+                        <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Approve
+                      </button>
+                    </form>
+                    <form action="/admin/users/<%= u._id %>/deny" method="POST" class="inline">
+                      <button type="submit" class="btn-danger !text-xs !px-3 !py-1.5">Deny</button>
+                    </form>
+                  <% } %>
+                  <% if (u.role !== 'admin' || u._id.toString() !== user._id.toString()) { %>
+                    <a href="/admin/users/<%= u._id %>/delete" class="btn-danger !text-xs !px-3 !py-1.5">
+                      <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                      Delete
+                    </a>
+                  <% } %>
+                </div>
+              </td>
+            </tr>
+          <% }); %>
+        <% } else { %>
+          <tr>
+            <td colspan="6" class="px-3 sm:px-6 py-8 text-center text-sidebar-muted">No users found.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

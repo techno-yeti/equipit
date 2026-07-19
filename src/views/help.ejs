@@ -1,0 +1,432 @@
+<%- include('partials/header', { title: 'Help Center' }) %>
+<%- include('partials/navbar') %>
+
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 mb-10">
+  <div class="absolute inset-0 opacity-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+  <div class="relative px-8 py-12 md:py-16 md:px-12 text-center">
+    <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/>
+      </svg>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">Help Center</h1>
+    <p class="text-primary-100 text-lg max-w-2xl mx-auto">Everything you need to know about managing equipment, creating requests, dispatching loads, and configuring your Equipit system.</p>
+  </div>
+</div>
+
+<div class="grid md:grid-cols-4 gap-6 mb-10">
+  <a href="#getting-started" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">1</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Getting Started</h3>
+    <p class="text-xs text-sidebar-muted mt-1">Setup, registration, and user roles</p>
+  </a>
+  <a href="#dashboard" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">2</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Dashboard</h3>
+    <p class="text-xs text-sidebar-muted mt-1">Overview and quick actions</p>
+  </a>
+  <a href="#equipment-types" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">3</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Equipment</h3>
+    <p class="text-xs text-sidebar-muted mt-1">Manage equipment types</p>
+  </a>
+  <a href="#templates" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-rose-400 to-rose-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">4</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Templates</h3>
+    <p class="text-xs text-sidebar-muted mt-1">Reusable equipment sets</p>
+  </a>
+  <a href="#requests" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-sky-400 to-sky-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">5</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Requests</h3>
+    <p class="text-xs text-sidebar-muted mt-1">Create, fulfill, and track</p>
+  </a>
+  <a href="#dispatch" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">6</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Dispatch</h3>
+    <p class="text-xs text-sidebar-muted mt-1">Security gate barcode scan</p>
+  </a>
+  <a href="#user-management" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">7</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Users</h3>
+    <p class="text-xs text-sidebar-muted mt-1">Admin approval and settings</p>
+  </a>
+  <a href="#cookies" class="card-hover p-5 group cursor-pointer">
+    <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+      <span class="text-white font-bold text-sm">8</span>
+    </div>
+    <h3 class="font-semibold text-sidebar-text group-hover:text-primary-500 transition-colors">Cookies & Privacy</h3>
+    <p class="text-xs text-sidebar-muted mt-1">How we handle cookies and data</p>
+  </a>
+</div>
+
+<section id="getting-started" class="scroll-mt-24 mb-10">
+  <div class="flex items-center space-x-4 mb-6">
+    <div class="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+      <span class="text-white font-bold text-sm">1</span>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold text-sidebar-text">Getting Started</h2>
+      <p class="text-sm text-sidebar-muted">Set up your system and understand user roles</p>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="card-hover p-6">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
+          <svg class="w-4 h-4 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        </div>
+        <h3 class="font-semibold text-sidebar-text">First-Time Setup</h3>
+      </div>
+      <p class="text-sm text-sidebar-muted mb-4">The first person to register becomes the <strong class="text-sidebar-text">Administrator</strong> and creates the first depot site. The first depot site is marked as <strong class="text-primary-600">First Site</strong> and cannot be deleted.</p>
+      <ol class="space-y-2 text-sm">
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">1</span>
+          <span class="text-sidebar-muted">Go to <a href="/register" class="text-primary-500 font-medium hover:text-primary-600">Register</a></span>
+        </li>
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">2</span>
+          <span class="text-sidebar-muted">Enter your name, email, and password (8+ chars)</span>
+        </li>
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">3</span>
+          <span class="text-sidebar-muted">Name the first depot site (e.g. "Manchester Depot")</span>
+        </li>
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">4</span>
+          <span class="text-sidebar-muted">Submit — you're automatically logged in as <strong class="text-primary-600">Admin</strong></span>
+        </li>
+      </ol>
+    </div>
+
+    <div class="card-hover p-6">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+        </div>
+        <h3 class="font-semibold text-sidebar-text">Subsequent Registration</h3>
+      </div>
+      <p class="text-sm text-sidebar-muted mb-4">New users are placed in <strong class="text-amber-600">Pending</strong> status. An admin must approve the account before they can log in.</p>
+      <ol class="space-y-2 text-sm">
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">1</span>
+          <span class="text-sidebar-muted">Go to <a href="/register" class="text-primary-500 font-medium hover:text-primary-600">Register</a> and select your depot</span>
+        </li>
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">2</span>
+          <span class="text-sidebar-muted">Fill in your details and submit</span>
+        </li>
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">3</span>
+          <span class="text-sidebar-muted">Wait for an administrator to approve your account</span>
+        </li>
+        <li class="flex items-start space-x-2.5">
+          <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">4</span>
+          <span class="text-sidebar-muted">Once approved, <a href="/login" class="text-primary-500 font-medium hover:text-primary-600">log in</a></span>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card-hover p-6 mt-4">
+    <div class="flex items-center space-x-3 mb-4">
+      <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center">
+        <svg class="w-4 h-4 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <h3 class="font-semibold text-sidebar-text">User Roles</h3>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+      <div class="bg-surface rounded-lg p-3 border border-surface-border">
+        <span class="inline-flex items-center rounded-full bg-primary-50 px-2 py-0.5 text-xs font-medium text-primary-600 border border-primary-100 mb-1.5">Admin</span>
+        <p class="text-xs text-sidebar-muted">Full access. Manage users, settings, depots, all CRUD.</p>
+      </div>
+      <div class="bg-surface rounded-lg p-3 border border-surface-border">
+        <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-600 border border-amber-100 mb-1.5">Manager</span>
+        <p class="text-xs text-sidebar-muted">Create/edit equipment, templates, requests.</p>
+      </div>
+      <div class="bg-surface rounded-lg p-3 border border-surface-border">
+        <span class="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-600 border border-emerald-100 mb-1.5">User</span>
+        <p class="text-xs text-sidebar-muted">View dashboard and requests. Fulfill requests, search, view details, and edit dispatch notes.</p>
+      </div>
+      <div class="bg-surface rounded-lg p-3 border border-surface-border">
+        <span class="inline-flex items-center rounded-full bg-cyan-50 px-2 py-0.5 text-xs font-medium text-cyan-600 border border-cyan-100 mb-1.5">Security</span>
+        <p class="text-xs text-sidebar-muted">Access dispatch only. View fulfilled and dispatched requests from assigned depot and scan barcodes at gate.</p>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <a href="#" class="inline-flex items-center space-x-1.5 text-xs text-sidebar-muted hover:text-primary-500 transition-colors">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+      <span>Back to top</span>
+    </a>
+  </div>
+</section>
+
+<%
+const sections = [
+  {
+    id: "dashboard", num: "2", icon: "dashboard", color: "emerald",
+    title: "Dashboard", subtitle: "Overview and quick actions",
+    content: [
+      { type: "text", value: "The Dashboard is your main landing page after login. It shows requests planned for a selected date. Use the date picker to browse different days &mdash; it defaults to today's date. Managers can plan days or weeks ahead by setting the <strong>Date Planned</strong> when creating requests. Search by reference number using the <strong>Search by ref</strong> field." },
+      { type: "features", items: [
+        "<strong>Stats Cards</strong> — Total, Pending, Fulfilled, and Dispatched counts at a glance",
+        "<strong>Requests Planned by Date</strong> — Table of requests for the selected date, with PDF download",
+        "<strong>Search</strong> — Search by 8-character reference number across all requests",
+      ]},
+      { type: "placeholder", caption: "Dashboard showing stats cards, search bar, and planned requests list filtered by date", image: "dashboard.png" },
+    ]
+  },
+  {
+    id: "equipment-types", num: "3", icon: "box", color: "amber",
+    title: "Equipment Types", subtitle: "Manage equipment types",
+    content: [
+      { type: "text", value: "Equipment types define the items allocated to requests. These are fully dynamic. The system seeds common types: <strong>Roll Cage</strong>, <strong>Full Tray</strong>, <strong>Half Tray</strong>, <strong>Black Base</strong>, and <strong>Green Base</strong>. Use <code>npm run seed</code> to re-run the seeder (it skips existing types)." },
+      { type: "text", value: "<strong>Trailer Types</strong> let you configure trailer-specific equipment capacities. Create trailers with equipment allocations, used alongside templates for request planning." },
+      { type: "features", items: [
+        "<strong>View</strong> — All users can view the list",
+        "<strong>Add</strong> — Managers and Admins can create new types",
+        "<strong>Edit</strong> — Update name or description",
+        "<strong>Delete</strong> — Admins and Managers can delete types (Admins only for trailers)",
+      ]},
+      { type: "placeholder", caption: "Equipment Types list page with Add/Edit/Delete buttons", image: "equipment.png" },
+    ]
+  },
+  {
+    id: "templates", num: "4", icon: "clipboard", color: "rose",
+    title: "Templates", subtitle: "Reusable equipment sets for suppliers",
+    content: [
+      { type: "text", value: "Templates are reusable equipment allocations assigned to specific suppliers. When creating a request, you must select a template &mdash; the equipment list is drawn entirely from the template." },
+      { type: "steps", items: [
+        "Create a template with a name, optional supplier, and equipment",
+        "When creating a request, select the template &mdash; it pre-fills the equipment",
+        "The template's equipment and quantities are used as-is",
+      ]},
+      { type: "placeholder", caption: "Templates list page showing template cards with equipment breakdown", image: "templates.png" },
+    ]
+  },
+  {
+    id: "requests", num: "5", icon: "document", color: "sky",
+    title: "Requests", subtitle: "Create, fulfill, and track",
+    content: [
+      { type: "subhead", value: "Browsing Requests" },
+      { type: "text", value: "The Requests page lists all equipment requests. Use the <strong>Search by ref</strong> field to find requests by their 8-character reference number. Use the <strong>All</strong> dropdown to filter by Unfulfilled, Fulfilled, or Dispatched." },
+      { type: "subhead", value: "Creating a Request" },
+      { type: "text", value: "A request represents an equipment allocation with a unique 8-character alphanumeric number (auto-generated or manually entered). Only Admins and Managers can create requests." },
+      { type: "steps", items: [
+        "Go to <strong>Requests</strong> and click <strong>New Request</strong>",
+        "Enter a custom number (8 chars) or leave blank to auto-generate",
+        "Enter a supplier name",
+        "Select a template (required) &mdash; the equipment list is drawn from the template",
+        "Select the depot site",
+        "Set the <strong>Date Planned</strong> &mdash; defaults to today, but can be set days or weeks ahead for planning",
+        "Click <strong>Create</strong>",
+      ]},
+      { type: "placeholder", caption: "New Request form with template selection, depot dropdown, planned date, and supplier fields", image: "request.png" },
+      { type: "subhead", value: "Fulfilling a Request" },
+      { type: "text", value: "Admins, Managers, and Users can fulfill requests. Both <strong>Box Number</strong> and <strong>Bay Number</strong> are required for storage location tracking. If either field is left empty, an error message is displayed on the page. The fulfillment date is automatically set to today. A <strong>Dispatch Advice Note PDF</strong> is generated with equipment allocation, storage details, and a QR code for gate scanning." },
+      { type: "placeholder", caption: "Fulfillment form showing the Box Number and Bay Number fields", image: "fulfill.png" },
+      { type: "subhead", value: "Viewing & Editing Requests" },
+      { type: "text", value: "Once a request is fulfilled, the <strong>View</strong> button opens the Dispatch Advice Note PDF. The <strong>Edit</strong> button allows Admins, Managers, and Users to update the Box Number and Bay Number &mdash; the PDF is automatically regenerated with the new values. Dispatched requests cannot be edited. Security users cannot edit dispatch details. Box and Bay Numbers only accept uppercase letters, digits, and hyphens." },
+    ]
+  },
+  {
+    id: "dispatch", num: "6", icon: "barcode", color: "cyan",
+    title: "Security Dispatch", subtitle: "Gate barcode scanning",
+    content: [
+      { type: "text", value: "Security users are restricted to viewing <strong>fulfilled</strong> and <strong>dispatched</strong> requests from their assigned depot (set by an Admin). Pending requests are not shown. The dispatch page only shows recent fulfilled and dispatched requests for that depot. Admins and Managers can also access the dispatch page and see all request statuses. Non-security users (Admin, Manager, User) can update dispatch details (box and bay numbers) on fulfilled requests from the Requests page, which regenerates the PDF. Dispatched requests are locked and cannot be edited." },
+      { type: "steps", items: [
+        "Log in with a <strong>Security</strong> role account",
+        "You're automatically redirected to the Dispatch page",
+        "Use a barcode scanner or type the 8-character code",
+        "Click <strong>Dispatch</strong> or press Enter",
+        "A success message confirms the dispatch",
+      ]},
+      { type: "note", value: "Only requests in <strong>Fulfilled</strong> status can be dispatched. Pending requests must first be fulfilled." },
+      { type: "placeholder", caption: "Security Dispatch page with barcode input field and depot-filtered requests table", image: "security.png" },
+    ]
+  },
+  {
+    id: "user-management", num: "7", icon: "users", color: "orange",
+    title: "User Management", subtitle: "Admin approval and settings",
+    content: [
+      { type: "subhead", value: "Managing Users" },
+      { type: "text", value: "Administrators can manage all user accounts from the <strong>Users</strong> page &mdash; approving pending registrations, changing roles, assigning depots for security users, and removing users." },
+      { type: "features", items: [
+        "<strong>Approve</strong> &mdash; Activate a pending user",
+        "<strong>Deny</strong> &mdash; Reject a pending user",
+        "<strong>Change Role</strong> &mdash; Switch between User, Manager, Security, Admin",
+        "<strong>Assign Depot</strong> &mdash; Set a depot for Security users (they'll only see requests for that depot)",
+        "<strong>Delete</strong> &mdash; Remove a user (admins can't delete themselves)",
+      ]},
+      { type: "placeholder", caption: "User Management page showing user table with role dropdowns and Approve/Deny buttons", image: "user.png" },
+      { type: "subhead", value: "Domain Settings" },
+      { type: "text", value: "Restrict registration to specific email domains. Useful for corporate environments." },
+      { type: "steps", items: [
+        "Go to <strong>Settings</strong> in admin navigation",
+        "Enter one domain per line (e.g. <code class='text-primary-600 bg-primary-50 px-1 rounded'>company.com</code>)",
+        "Leave empty to allow all domains",
+        "Click <strong>Save Configuration</strong>",
+      ]},
+      { type: "note", value: "Domain restrictions only apply to new registrations. The first admin user bypasses them." },
+      { type: "placeholder", caption: "Settings page showing domain configuration textarea", image: "settings.png" },
+    ]
+  },
+  {
+    id: "cookies", num: "8", icon: "shield", color: "purple",
+      title: "Cookies & Privacy", subtitle: "How we handle cookies and your data",
+      content: [
+        { type: "subhead", value: "What Cookies Does Equipit Use?" },
+        { type: "text", value: "Equipit uses <strong>one single cookie</strong> &mdash; an authentication token that keeps you signed in while you use the application. There are no tracking cookies, analytics cookies, advertising cookies, or third-party cookies of any kind." },
+        { type: "features", items: [
+          "<strong>Auth Token</strong> (name: <code class='text-purple-600 bg-purple-50 px-1 rounded'>token</code>) &mdash; Stores your encrypted login session. Expires after 7 days of inactivity.",
+          "<strong>Consent Preference</strong> (name: <code class='text-purple-600 bg-purple-50 px-1 rounded'>equipit_cookies_accepted</code>) &mdash; Remembers whether you accepted the cookie banner. Expires after 1 year.",
+        ]},
+        { type: "subhead", value: "Cookie Security" },
+        { type: "features", items: [
+          "<strong>HttpOnly</strong> &mdash; The auth cookie cannot be read or modified by JavaScript running in the browser. This prevents XSS-based cookie theft.",
+          "<strong>Secure</strong> &mdash; In production, the cookie is only sent over HTTPS. It will never be transmitted over an unencrypted connection.",
+          "<strong>SameSite</strong> &mdash; The cookie is only sent when navigating to Equipit directly from within Equipit. External sites cannot forge requests using your session.",
+        ]},
+        { type: "subhead", value: "Cross-Origin Access (CORS)" },
+        { type: "text", value: "CORS (Cross-Origin Resource Sharing) controls which external websites or applications can communicate with the Equipit server. The administrator configures this via the <code class='text-purple-600 bg-purple-50 px-1 rounded'>CORS_ALLOWED_ORIGINS</code> environment variable &mdash; typically set to the Equipit application URL itself. This prevents external websites from making API calls to your Equipit instance." },
+        { type: "text", value: "The auth cookie is protected by <strong>sameSite</strong>, which means it is only attached to requests originating from the same Equipit domain. Combined with CORS restrictions, this creates a strong defence against cross-site request forgery and session hijacking." },
+        { type: "subhead", value: "Your Consent" },
+        { type: "text", value: "When you first visit Equipit, a banner appears explaining the cookie usage. You can <strong>Accept</strong> or <strong>Decline</strong>. Either choice stores a simple preference cookie so the banner doesn't reappear on every visit. You can clear your browser cookies at any time to reset this choice." },
+        { type: "note", value: "Equipit does <strong>not</strong> collect personal data beyond what you provide during registration (name, email, depot assignment). No data is shared with third parties. No analytics or tracking scripts are loaded." },
+    ]
+  },
+];
+%>
+
+<% sections.forEach(function(section) { %>
+<section id="<%= section.id %>" class="scroll-mt-24 mb-10">
+  <div class="flex items-center space-x-4 mb-6">
+    <div class="w-10 h-10 bg-gradient-to-br from-<%= section.color %>-400 to-<%= section.color %>-600 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+      <span class="text-white font-bold text-sm"><%= section.num %></span>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold text-sidebar-text"><%= section.title %></h2>
+      <p class="text-sm text-sidebar-muted"><%= section.subtitle %></p>
+    </div>
+  </div>
+
+  <div class="card-hover p-6">
+    <% section.content.forEach(function(block) { %>
+      <% if (block.type === "text") { %>
+        <p class="text-sm text-sidebar-muted mb-4"><%- block.value %></p>
+      <% } else if (block.type === "subhead") { %>
+        <h3 class="font-semibold text-sidebar-text mb-3 mt-6 first:mt-0"><%- block.value %></h3>
+      <% } else if (block.type === "features") { %>
+        <ul class="grid sm:grid-cols-2 gap-2 mb-4">
+          <% block.items.forEach(function(item) { %>
+            <li class="flex items-start space-x-2 text-sm text-sidebar-muted">
+              <svg class="w-4 h-4 text-<%= section.color %>-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span><%- item %></span>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else if (block.type === "steps") { %>
+        <ol class="space-y-2 mb-4">
+          <% block.items.forEach(function(item, idx) { %>
+            <li class="flex items-start space-x-2.5 text-sm">
+              <span class="w-5 h-5 bg-<%= section.color %>-100 text-<%= section.color %>-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5"><%= idx + 1 %></span>
+              <span class="text-sidebar-muted"><%- item %></span>
+            </li>
+          <% }); %>
+        </ol>
+      <% } else if (block.type === "lifecycle") { %>
+        <div class="flex flex-wrap items-center justify-center gap-3 py-4 mb-4">
+          <span class="badge-pending text-sm px-3 py-1">Pending</span>
+          <svg class="w-5 h-5 text-sidebar-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <span class="badge-fulfilled text-sm px-3 py-1">Fulfilled</span>
+          <svg class="w-5 h-5 text-sidebar-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <span class="badge-dispatched text-sm px-3 py-1">Dispatched</span>
+        </div>
+        <ol class="space-y-2 text-sm text-sidebar-muted">
+          <li class="flex items-start space-x-2.5">
+            <span class="w-5 h-5 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">1</span>
+            <span><strong class="text-sidebar-text">Pending</strong> &mdash; Created and awaiting fulfilment</span>
+          </li>
+          <li class="flex items-start space-x-2.5">
+            <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">2</span>
+            <span><strong class="text-sidebar-text">Fulfilled</strong> &mdash; Marked complete, PDF generated automatically</span>
+          </li>
+          <li class="flex items-start space-x-2.5">
+            <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">3</span>
+            <span><strong class="text-sidebar-text">Dispatched</strong> &mdash; Barcode scanned at gate, allocation locked</span>
+          </li>
+        </ol>
+      <% } else if (block.type === "note") { %>
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg mb-4">
+          <div class="flex items-start space-x-2">
+            <svg class="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-xs text-blue-700"><%- block.value %></p>
+          </div>
+        </div>
+      <% } else if (block.type === "placeholder") { %>
+        <div class="my-6 rounded-lg border border-surface-border overflow-hidden shadow-sm">
+          <img src="/images/screens/<%= block.image %>" alt="<%= block.caption %>" class="w-full h-auto" loading="lazy">
+          <p class="text-xs text-sidebar-muted text-center py-2 bg-surface"><%= block.caption %></p>
+        </div>
+      <% } %>
+    <% }); %>
+  </div>
+  <div class="text-center mt-4">
+    <a href="#" class="inline-flex items-center space-x-1.5 text-xs text-sidebar-muted hover:text-primary-500 transition-colors">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+      <span>Back to top</span>
+    </a>
+  </div>
+</section>
+<% }); %>
+
+<div class="rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 p-8 mb-8">
+  <div class="flex items-center space-x-3 mb-6">
+    <div class="w-8 h-8 bg-primary-200 rounded-lg flex items-center justify-center">
+      <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    </div>
+    <h2 class="text-xl font-bold text-primary-800">Quick Reference</h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white/70 backdrop-blur rounded-xl p-4 border border-primary-100">
+      <h4 class="font-semibold text-primary-700 text-sm mb-1">Request Numbers</h4>
+      <p class="text-xs text-primary-600">8-character alphanumeric. Uses A-Z, 2-9 (excludes 0, O, I, 1 to avoid confusion).</p>
+    </div>
+    <div class="bg-white/70 backdrop-blur rounded-xl p-4 border border-primary-100">
+      <h4 class="font-semibold text-primary-700 text-sm mb-1">Status Flow</h4>
+      <p class="text-xs text-primary-600">Pending &rarr; Fulfilled (PDF generated) &rarr; Dispatched (locked). Irreversible.</p>
+    </div>
+    <div class="bg-white/70 backdrop-blur rounded-xl p-4 border border-primary-100">
+      <h4 class="font-semibold text-primary-700 text-sm mb-1">PDF Reports</h4>
+      <p class="text-xs text-primary-600">Auto-generated on fulfilment. Includes request details, equipment table, and barcode.</p>
+    </div>
+    <div class="bg-white/70 backdrop-blur rounded-xl p-4 border border-primary-100">
+      <h4 class="font-semibold text-primary-700 text-sm mb-1">Barcode Scanning</h4>
+      <p class="text-xs text-primary-600">Use any USB barcode scanner at the gate. Scanners input code + Enter automatically.</p>
+    </div>
+  </div>
+</div>
+
+<div class="text-center pb-4">
+  <a href="#" class="inline-flex items-center space-x-2 text-sm text-sidebar-muted hover:text-primary-500 transition-colors">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    <span>Back to top</span>
+  </a>
+</div>
+
+<%- include('partials/footer') %>

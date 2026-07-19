@@ -1,0 +1,64 @@
+<%- include('partials/header', { title: 'Home' }) %>
+<%- include('partials/navbar') %>
+
+  <section class="relative overflow-hidden rounded-3xl">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900"></div>
+    <div class="absolute inset-0 opacity-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
+      <div class="text-center">
+        <div class="flex items-center justify-center space-x-5 mb-8">
+          <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center shadow-lg shadow-black/10">
+            <span class="text-white font-bold text-3xl">E</span>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight">Equipit</h1>
+        </div>
+        <p class="text-xl md:text-2xl text-primary-100 mb-4 font-light">Warehouse Equipment Management System</p>
+        <p class="text-primary-200 max-w-2xl mx-auto mb-10 text-lg">
+          Streamline your warehouse operations — manage equipment types, create trailer configurations,
+          assign templates, track requests, and dispatch loads from gate to destination.
+        </p>
+        <div class="flex items-center justify-center space-x-4">
+          <a href="/register" class="inline-flex items-center space-x-2 bg-white text-primary-700 font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-black/10 hover:bg-primary-50 transition-colors !text-base">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            <span>Get Started</span>
+          </a>
+          <a href="/login" class="inline-flex items-center space-x-2 border border-white/30 text-white font-medium px-8 py-3.5 rounded-xl hover:bg-white/10 transition-colors !text-base">
+            <span>Sign In</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-sidebar-text">Everything You Need</h2>
+        <p class="text-sidebar-muted mt-2">Manage your warehouse equipment from setup to dispatch</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card p-8 text-center hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-sidebar-text mb-2">Equipment Management</h3>
+          <p class="text-sidebar-muted text-sm">Define and manage all equipment types dynamically — roll cages, trays, bases and more.</p>
+        </div>
+        <div class="card p-8 text-center hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-sidebar-text mb-2">Trailer & Template Config</h3>
+          <p class="text-sidebar-muted text-sm">Configure trailer types with equipment capacities. Create reusable templates per supplier.</p>
+        </div>
+        <div class="card p-8 text-center hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-sidebar-text mb-2">Dispatch & Tracking</h3>
+          <p class="text-sidebar-muted text-sm">Security gate barcode scanning for dispatch. Generated PDF reports with full audit trail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<%- include('partials/footer') %>

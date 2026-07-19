@@ -1,0 +1,70 @@
+<%- include('../partials/header', { title: 'New Request' }) %>
+<%- include('../partials/navbar') %>
+<div class="max-w-2xl mx-auto">
+  <div class="card p-8">
+    <h1 class="text-2xl font-bold text-sidebar-text mb-2">Create Request</h1>
+    <p class="text-sidebar-muted text-sm mb-6">Create a new equipment request from a template.</p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+        <p class="text-red-700 text-sm"><%= error %></p>
+      </div>
+    <% } %>
+
+    <form action="/requests/create" method="POST" class="space-y-4">
+      <%
+        var now = new Date();
+        var localDate = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+      %>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="requestNumber" class="label">Request Number (optional)</label>
+          <input type="text" id="requestNumber" name="requestNumber" class="input-field font-mono" placeholder="Auto-generate" maxlength="6" pattern="[A-Za-z0-9]{6}">
+          <p class="text-xs text-sidebar-muted mt-1">6 alphanumeric chars or leave blank to auto-generate</p>
+        </div>
+        <div>
+          <label for="supplier" class="label">Supplier</label>
+          <input type="text" id="supplier" name="supplier" class="input-field" placeholder="Supplier name">
+        </div>
+      </div>
+
+      <div>
+        <label for="template" class="label">Template</label>
+        <select id="template" name="template" class="input-field" required>
+          <option value="">Select a template...</option>
+          <% if (templates && templates.length > 0) { %>
+            <% templates.forEach(function(t) { %>
+              <option value="<%= t._id %>"><%= t.name %><%= t.supplier ? ' (' + t.supplier + ')' : '' %></option>
+            <% }); %>
+          <% } else { %>
+            <option value="" disabled>No templates with equipment available</option>
+          <% } %>
+        </select>
+      </div>
+
+      <div>
+        <label for="depotSite" class="label">Depot Site</label>
+        <select id="depotSite" name="depotSite" class="input-field">
+          <option value="">Select depot</option>
+          <% if (typeof depotSites !== 'undefined' && depotSites && depotSites.length > 0) { %>
+            <% depotSites.forEach(function(s) { %>
+              <option value="<%= s._id %>"><%= s.name %></option>
+            <% }); %>
+          <% } %>
+        </select>
+      </div>
+
+      <div>
+        <label for="plannedDate" class="label">Date Planned</label>
+        <input type="date" id="plannedDate" name="plannedDate" class="input-field" value="<%= localDate %>" required>
+      </div>
+
+      <div class="flex items-center justify-end space-x-3 pt-4 border-t border-surface-border">
+        <a href="/requests" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary">Create Request</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,61 @@
+<%- include('../partials/header', { title: trailer ? 'Edit Trailer' : 'Add Trailer' }) %>
+<%- include('../partials/navbar') %>
+<div class="max-w-2xl mx-auto">
+  <div class="card p-8">
+    <h1 class="text-2xl font-bold text-sidebar-text mb-2"><%= trailer ? 'Edit Trailer Type' : 'Add Trailer Type' %></h1>
+    <p class="text-sidebar-muted text-sm mb-6"><%= trailer ? 'Update the trailer configuration' : 'Create a new trailer type with equipment capacities' %></p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+        <p class="text-red-700 text-sm"><%= error %></p>
+      </div>
+    <% } %>
+
+    <form action="<%= trailer ? '/trailers/' + trailer._id + '/edit' : '/trailers/create' %>" method="POST" class="space-y-4">
+      <div>
+        <label for="label" class="label">Trailer Label</label>
+        <input type="text" id="label" name="label" class="input-field" value="<%= trailer ? trailer.label : '' %>" placeholder="e.g. Trailer A" required>
+      </div>
+
+      <div>
+        <label class="label">Equipment Capacities</label>
+        <div id="equipmentRows" class="space-y-2">
+          <% if (trailer && trailer.equipments && trailer.equipments.length > 0) { %>
+            <% trailer.equipments.forEach(function(eq) { %>
+              <div class="flex items-center space-x-2">
+                <select name="equipmentType[]" class="input-field">
+                  <option value="">Select equipment</option>
+                  <% equipmentTypes.forEach(function(e) { %>
+                    <option value="<%= e._id %>" <%= eq.equipmentType && eq.equipmentType._id && eq.equipmentType._id.toString() === e._id.toString() ? 'selected' : '' %>><%= e.name %></option>
+                  <% }); %>
+                </select>
+                <input type="number" name="quantity[]" class="input-field w-24" placeholder="Qty" min="0" value="<%= eq.quantity %>">
+                <button type="button" class="remove-equipment-btn text-red-500 hover:text-red-700 p-1">&times;</button>
+              </div>
+            <% }); %>
+          <% } else { %>
+            <div class="flex items-center space-x-2">
+              <select name="equipmentType[]" class="input-field">
+                <option value="">Select equipment</option>
+                <% equipmentTypes.forEach(function(e) { %>
+                  <option value="<%= e._id %>"><%= e.name %></option>
+                <% }); %>
+              </select>
+              <input type="number" name="quantity[]" class="input-field w-24" placeholder="Qty" min="0">
+              <button type="button" class="remove-equipment-btn text-red-500 hover:text-red-700 p-1">&times;</button>
+            </div>
+          <% } %>
+        </div>
+        <button type="button" id="addEquipmentBtn" class="text-primary-600 hover:text-primary-700 text-sm font-medium mt-2">+ Add Equipment</button>
+      </div>
+
+      <div class="flex items-center justify-end space-x-3 pt-4 border-t border-surface-border">
+        <a href="/trailers" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary"><%= trailer ? 'Update' : 'Create' %></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/equipment-rows.js" defer></script>
+<%- include('../partials/footer') %>

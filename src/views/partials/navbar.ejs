@@ -1,0 +1,89 @@
+<nav class="sticky top-0 z-50 bg-white border-b border-surface-border shadow-nav">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center space-x-8">
+        <a href="/" class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 bg-primary-400 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">E</span>
+          </div>
+          <span class="text-lg font-bold text-sidebar-text tracking-tight">Equipit</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-1">
+            <% if (user) { %>
+              <% if (user.role === 'security') { %>
+                <a href="/dispatch" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Dispatch</a>
+              <% } else { %>
+                <% if (['admin', 'manager', 'user'].includes(user.role)) { %>
+                  <a href="/dashboard" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+                <% } %>
+                <a href="/requests" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Requests</a>
+                <% if (['admin', 'manager'].includes(user.role)) { %>
+                  <a href="/equipment" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Equipment</a>
+                  <a href="/templates" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Templates</a>
+                <% } %>
+                <% if (user.role === 'admin') { %>
+                  <a href="/depots" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Depots</a>
+                  <a href="/admin/users" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Users</a>
+                  <a href="/admin/config" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Settings</a>
+                <% } %>
+              <% } %>
+            <% } %>
+            <a href="/help" class="text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover px-3 py-2 rounded-lg text-sm font-medium transition-colors">Help</a>
+          </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <% if (user) { %>
+          <div class="hidden md:flex items-center space-x-3">
+            <span class="inline-flex items-center rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-medium text-primary-500 border border-primary-100 capitalize"><%= user.role %></span>
+            <span class="text-sm text-sidebar-text font-medium"><%= user.name %></span>
+          </div>
+          <a href="/logout" class="btn-secondary !text-xs !px-3 !py-1.5">Logout</a>
+        <% } else { %>
+          <a href="/login" class="text-sidebar-text hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Login</a>
+          <a href="/register" class="btn-primary !text-sm !px-3 !py-1.5">Register</a>
+        <% } %>
+        <button id="mobileMenuToggle" class="md:hidden p-2 rounded-lg text-sidebar-text hover:text-primary-400 hover:bg-sidebar-hover transition-colors" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg id="menuIconOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="menuIconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-surface-border bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-1">
+      <% if (user) { %>
+        <div class="flex items-center space-x-2 pb-3 mb-2 border-b border-surface-border md:hidden">
+          <span class="inline-flex items-center rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-medium text-primary-500 border border-primary-100 capitalize"><%= user.role %></span>
+          <span class="text-sm text-sidebar-text font-medium"><%= user.name %></span>
+        </div>
+
+        <% if (user.role === 'security') { %>
+          <a href="/dispatch" class="mobile-nav-link">Dispatch</a>
+        <% } else { %>
+          <% if (['admin', 'manager', 'user'].includes(user.role)) { %>
+            <a href="/dashboard" class="mobile-nav-link">Dashboard</a>
+          <% } %>
+          <a href="/requests" class="mobile-nav-link">Requests</a>
+          <% if (['admin', 'manager'].includes(user.role)) { %>
+            <a href="/equipment" class="mobile-nav-link">Equipment</a>
+            <a href="/templates" class="mobile-nav-link">Templates</a>
+          <% } %>
+          <% if (user.role === 'admin') { %>
+            <a href="/depots" class="mobile-nav-link">Depots</a>
+            <a href="/admin/users" class="mobile-nav-link">Users</a>
+            <a href="/admin/config" class="mobile-nav-link">Settings</a>
+          <% } %>
+        <% } %>
+      <% } %>
+      <a href="/help" class="mobile-nav-link">Help</a>
+    </div>
+  </div>
+</nav>
+<main class="flex-1">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">

@@ -1,0 +1,7 @@
+node_modules/
+src/public/css/app.css
+src/uploads/pdfs/*
+!src/uploads/pdfs/.gitkeep
+dist/
+*.log
+.DS_Store

@@ -1,0 +1,26 @@
+<%- include('../partials/header', { title: 'Add Depot' }) %>
+<%- include('../partials/navbar') %>
+<div class="max-w-lg mx-auto">
+  <div class="card p-8">
+    <h1 class="text-2xl font-bold text-sidebar-text mb-2">Add Depot Site</h1>
+    <p class="text-sidebar-muted text-sm mb-6">Create a new warehouse depot location</p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+        <p class="text-red-700 text-sm"><%= error %></p>
+      </div>
+    <% } %>
+
+    <form action="/depots/create" method="POST" class="space-y-4">
+      <div>
+        <label for="name" class="label">Depot Site Name</label>
+        <input type="text" id="name" name="name" class="input-field" placeholder="e.g. Manchester Depot" required>
+      </div>
+      <div class="flex items-center justify-end space-x-3 pt-4">
+        <a href="/depots" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary">Create Depot</button>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include('../partials/footer') %>

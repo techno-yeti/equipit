@@ -1,0 +1,67 @@
+<%- include('../partials/header', { title: 'Depot Sites' }) %>
+<%- include('../partials/navbar') %>
+<div class="space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-y-4 sm:gap-0">
+    <div>
+      <h1 class="page-title">Depot Sites</h1>
+      <p class="page-subtitle">Manage warehouse depot locations</p>
+    </div>
+    <% if (user.role === 'admin') { %>
+      <a href="/depots/create" class="btn-primary">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        Add Depot
+      </a>
+    <% } %>
+  </div>
+
+  <div class="card overflow-x-auto sm:overflow-hidden -mx-4 sm:mx-0">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="bg-surface text-left">
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Name</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Created By</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">First Site</th>
+          <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Created</th>
+          <% if (user.role === 'admin') { %>
+            <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Actions</th>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-surface-border">
+        <% if (depots && depots.length > 0) { %>
+          <% depots.forEach(function(d) { %>
+            <tr class="hover:bg-surface">
+              <td class="px-3 sm:px-6 py-4 font-medium"><%= d.name %></td>
+              <td class="px-3 sm:px-6 py-4"><%= d.createdBy ? d.createdBy.name : 'System' %></td>
+              <td class="px-3 sm:px-6 py-4">
+                <% if (d.isFirstSite) { %>
+                  <span class="badge bg-primary-100 text-primary-700">First Site</span>
+                <% } else { %>
+                  <span class="text-sidebar-muted">-</span>
+                <% } %>
+              </td>
+              <td class="px-3 sm:px-6 py-4 text-sidebar-muted"><%= new Date(d.createdAt).toLocaleDateString('en-GB') %></td>
+              <% if (user.role === 'admin' && !d.isFirstSite) { %>
+                <td class="px-3 sm:px-6 py-4">
+                  <a href="/depots/<%= d._id %>/delete" class="btn-danger !text-xs !px-3 !py-1.5">
+                    <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    Delete
+                  </a>
+                </td>
+              <% } else if (user.role === 'admin' && d.isFirstSite) { %>
+                <td class="px-3 sm:px-6 py-4">
+                  <span class="text-xs text-sidebar-muted italic">Required — cannot delete</span>
+                </td>
+              <% } %>
+            </tr>
+          <% }); %>
+        <% } else { %>
+          <tr>
+            <td colspan="5" class="px-3 sm:px-6 py-8 text-center text-sidebar-muted">No depot sites defined.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('../partials/footer') %>

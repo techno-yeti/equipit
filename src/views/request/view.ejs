@@ -1,0 +1,103 @@
+<%- include('../partials/header', { title: 'Request Details' }) %>
+<%- include('../partials/navbar') %>
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-2xl font-bold text-sidebar-text">Request: <%= request.requestNumber %></h1>
+    </div>
+    <a href="/" class="btn-secondary !text-xs !px-3 !py-1.5">
+      <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Back
+    </a>
+  </div>
+
+  <div class="card p-6">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+      <div>
+        <p class="text-xs text-sidebar-muted uppercase tracking-wider">Status</p>
+        <% if (request.status === 'pending') { %>
+          <span class="badge-pending mt-1">Pending</span>
+        <% } else if (request.status === 'fulfilled') { %>
+          <span class="badge-fulfilled mt-1">Fulfilled</span>
+        <% } else if (request.status === 'dispatched') { %>
+          <span class="badge-dispatched mt-1">Dispatched</span>
+        <% } %>
+      </div>
+      <div>
+        <p class="text-xs text-sidebar-muted uppercase tracking-wider">Supplier</p>
+        <p class="font-medium mt-1"><%= request.supplier || 'N/A' %></p>
+      </div>
+      <div>
+        <p class="text-xs text-sidebar-muted uppercase tracking-wider">Depot Site</p>
+        <p class="font-medium mt-1"><%= request.depotSite ? request.depotSite.name : 'N/A' %></p>
+      </div>
+      <div>
+        <p class="text-xs text-sidebar-muted uppercase tracking-wider">Created By</p>
+        <p class="font-medium mt-1"><%= request.createdBy ? request.createdBy.name : 'Unknown' %></p>
+      </div>
+      <div>
+        <p class="text-xs text-sidebar-muted uppercase tracking-wider">Created At</p>
+        <p class="font-medium mt-1"><%= new Date(request.createdAt).toLocaleString('en-GB') %></p>
+      </div>
+      <div>
+        <p class="text-xs text-sidebar-muted uppercase tracking-wider">Date Planned</p>
+        <p class="font-medium mt-1"><%= request.plannedDate ? new Date(request.plannedDate).toLocaleDateString('en-GB') : '-' %></p>
+      </div>
+      <% if (request.status !== 'pending') { %>
+        <div>
+          <p class="text-xs text-sidebar-muted uppercase tracking-wider">Fulfilled By</p>
+          <p class="font-medium mt-1"><%= request.fulfilledBy ? request.fulfilledBy.name : 'Unknown' %></p>
+        </div>
+        <% if (request.boxNumber) { %>
+          <div>
+            <p class="text-xs text-sidebar-muted uppercase tracking-wider">Box Number</p>
+            <p class="font-medium mt-1"><%= request.boxNumber %></p>
+          </div>
+        <% } %>
+        <% if (request.bayNumber) { %>
+          <div>
+            <p class="text-xs text-sidebar-muted uppercase tracking-wider">Bay Number</p>
+            <p class="font-medium mt-1"><%= request.bayNumber %></p>
+          </div>
+        <% } %>
+        <% if (request.dispatchNote) { %>
+          <div class="col-span-2 md:col-span-5">
+            <p class="text-xs text-sidebar-muted uppercase tracking-wider">Dispatch Note</p>
+            <p class="font-medium mt-1"><%= request.dispatchNote %></p>
+          </div>
+        <% } %>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="px-6 py-4 border-b border-surface-border">
+      <h2 class="text-lg font-semibold text-sidebar-text">Equipment Allocation</h2>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-surface text-left">
+            <th class="px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Equipment Type</th>
+            <th class="px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Quantity</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-border">
+          <% if (request.equipments && request.equipments.length > 0) { %>
+            <% request.equipments.forEach(function(eq) { %>
+              <tr>
+                <td class="px-6 py-4"><%= eq.equipmentType ? eq.equipmentType.name : 'Unknown' %></td>
+                <td class="px-6 py-4 font-medium"><%= eq.quantity %></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="2" class="px-6 py-4 text-sidebar-muted">No equipment allocated</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

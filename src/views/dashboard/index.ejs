@@ -1,0 +1,104 @@
+<%- include('../partials/header', { title: 'Dashboard' }) %>
+<%- include('../partials/navbar') %>
+<div class="space-y-6">
+  <div class="flex flex-col gap-y-4">
+    <div>
+      <h1 class="page-title">Dashboard</h1>
+      <p class="page-subtitle">Welcome back, <%= user.name %></p>
+    </div>
+    <form method="GET" action="/dashboard" class="flex flex-wrap items-center gap-2">
+      <input type="text" name="search" value="<%= typeof search !== 'undefined' ? search : '' %>" placeholder="Search by ref" class="input-field text-sm font-mono w-full sm:w-40" maxlength="6">
+      <input type="date" name="date" value="<%= filterDate %>" class="input-field text-sm w-full sm:w-auto">
+      <button type="submit" class="btn-primary !text-xs !px-3 !py-1.5 w-full sm:w-auto">Search</button>
+    </form>
+  </div>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+      <p class="text-red-700 text-sm"><%= error %></p>
+    </div>
+  <% } %>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+    <div class="stat-card">
+      <p class="text-sidebar-muted text-sm font-medium">Total Requests</p>
+      <p class="text-3xl font-bold text-sidebar-text mt-1"><%= stats.total %></p>
+    </div>
+    <div class="stat-card border-l-4 border-amber-400">
+      <p class="text-sidebar-muted text-sm font-medium">Pending</p>
+      <p class="text-3xl font-bold text-amber-600 mt-1"><%= stats.pending %></p>
+    </div>
+    <div class="stat-card border-l-4 border-emerald-400">
+      <p class="text-sidebar-muted text-sm font-medium">Fulfilled</p>
+      <p class="text-3xl font-bold text-emerald-600 mt-1"><%= stats.fulfilled %></p>
+    </div>
+    <div class="stat-card border-l-4 border-blue-400">
+      <p class="text-sidebar-muted text-sm font-medium">Dispatched</p>
+      <p class="text-3xl font-bold text-blue-600 mt-1"><%= stats.dispatched %></p>
+    </div>
+  </div>
+
+  <% if (typeof search !== 'undefined' && search) { %>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-sidebar-muted">
+      <span>Search results for reference: <strong class="text-sidebar-text font-mono"><%= search.toUpperCase() %></strong></span>
+      <a href="/dashboard?date=<%= filterDate %>" class="text-primary-600 hover:text-primary-700 font-medium">Clear</a>
+    </div>
+  <% } %>
+
+  <div class="card">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <h2 class="text-lg font-semibold text-sidebar-text">Planned for <%= new Date(filterDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></h2>
+    </div>
+    <div class="overflow-x-auto -mx-4 sm:mx-0">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-50 text-left">
+            <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Request #</th>
+            <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Supplier</th>
+            <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Status</th>
+            <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Depot</th>
+            <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Fulfilled By</th>
+            <th class="px-3 sm:px-6 py-3 font-medium text-sidebar-muted text-xs uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <% if (requests && requests.length > 0) { %>
+            <% requests.forEach(function(req) { %>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-3 sm:px-6 py-4 font-mono font-medium"><%= req.requestNumber %></td>
+                <td class="px-3 sm:px-6 py-4"><%= req.supplier || 'N/A' %></td>
+                <td class="px-3 sm:px-6 py-4">
+                  <% if (req.status === 'pending') { %>
+                    <span class="badge-pending">Pending</span>
+                  <% } else if (req.status === 'fulfilled') { %>
+                    <span class="badge-fulfilled">Fulfilled</span>
+                  <% } else if (req.status === 'dispatched') { %>
+                    <span class="badge-dispatched">Dispatched</span>
+                  <% } %>
+                </td>
+                <td class="px-3 sm:px-6 py-4"><%= req.depotSite ? req.depotSite.name : '-' %></td>
+                <td class="px-3 sm:px-6 py-4"><%= req.fulfilledBy ? req.fulfilledBy.name : '-' %></td>
+                <td class="px-3 sm:px-6 py-4">
+                  <div class="flex items-center space-x-2">
+                    <% if (req.pdfPath) { %>
+                        <a href="/requests/<%= req._id %>/pdf" target="_blank" class="btn-secondary !text-xs !px-3 !py-1.5">
+                          <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                          View
+                        </a>
+                      <% } %>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="6" class="px-3 sm:px-6 py-8 text-center text-gray-400">No requests planned for this date.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

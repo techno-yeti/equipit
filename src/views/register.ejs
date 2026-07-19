@@ -1,0 +1,87 @@
+<%- include('partials/header', { title: 'Register' }) %>
+<%- include('partials/navbar') %>
+
+<div class="flex items-center justify-center py-12">
+  <div class="w-full max-w-md">
+    <div class="card p-8">
+      <div class="text-center mb-8">
+        <div class="w-12 h-12 bg-equipit-green rounded-xl flex items-center justify-center mx-auto mb-3">
+          <span class="text-white font-bold text-xl">E</span>
+        </div>
+        <h1 class="text-2xl font-bold text-sidebar-text">
+          <% if (typeof isFirstUser !== 'undefined' && isFirstUser) { %>
+            Set Up Equipit
+          <% } else { %>
+            Create Account
+          <% } %>
+        </h1>
+        <p class="text-sidebar-muted text-sm mt-1">
+          <% if (typeof isFirstUser !== 'undefined' && isFirstUser) { %>
+            The first user is automatically the admin. Specify the first depot site.
+          <% } else { %>
+            Join your depot's equipment management system
+          <% } %>
+        </p>
+      </div>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+          <p class="text-red-700 text-sm"><%= error %></p>
+        </div>
+      <% } %>
+
+      <form action="/register" method="POST" class="space-y-4">
+        <div>
+          <label for="name" class="label">Full Name</label>
+          <input type="text" id="name" name="name" class="input-field" placeholder="John Smith" required>
+        </div>
+        <div>
+          <label for="email" class="label">Email</label>
+          <input type="email" id="email" name="email" class="input-field" placeholder="you@example.com" required autocomplete="email">
+        </div>
+
+        <% if (typeof isFirstUser !== 'undefined' && isFirstUser) { %>
+          <div>
+            <label for="depotSiteName" class="label">First Depot Site Name</label>
+            <input type="text" id="depotSiteName" name="depotSiteName" class="input-field" placeholder="e.g. Manchester Depot" required>
+            <p class="text-xs text-sidebar-muted mt-1">This will be the first depot site in the system</p>
+          </div>
+        <% } else { %>
+          <div>
+            <label for="depotSite" class="label">Depot Site</label>
+            <select id="depotSite" name="depotSite" class="input-field" required>
+              <option value="">Select a depot site</option>
+              <% if (typeof depotSites !== 'undefined' && depotSites && depotSites.length > 0) { %>
+                <% depotSites.forEach(function(site) { %>
+                  <option value="<%= site._id %>"><%= site.name %></option>
+                <% }); %>
+              <% } %>
+            </select>
+          </div>
+        <% } %>
+
+        <div>
+          <label for="password" class="label">Password</label>
+          <input type="password" id="password" name="password" class="input-field" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password">
+        </div>
+        <div>
+          <label for="confirmPassword" class="label">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="input-field" placeholder="Confirm your password" required minlength="8" autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn-primary w-full !py-2.5">
+          <% if (typeof isFirstUser !== 'undefined' && isFirstUser) { %>
+            Set Up System
+          <% } else { %>
+            Create Account
+          <% } %>
+        </button>
+      </form>
+
+      <p class="text-center text-sm text-sidebar-muted mt-6">
+        Already have an account? <a href="/login" class="text-primary-600 hover:text-primary-700 font-medium">Sign in</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
