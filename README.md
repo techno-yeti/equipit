@@ -19,8 +19,6 @@ Warehouse Equipment Management System — a Node.js + Express + MongoDB applicat
 - **User Management** — Admin approval workflow with role-based access (Admin, Manager, User, Security) and depot assignment. Users, settings, and depots are admin-only.
 - **Depot Sites** — Multi-depot support with depot assignment for security users. The first depot site is protected and cannot be deleted.
 - **Domain Restrictions** — Restrict registration to specific email domains via admin configuration
-- **Cookie Consent Banner** — Modal overlay on first visit explaining the authentication cookie, with Accept/Decline options and a live CORS origins display
-- **Mobile-Responsive Navbar** — Hamburger menu toggle on small screens with role-based navigation links
 - **Security Headers** — CSP (Content Security Policy) via Helmet blocks inline scripts and inline event handlers; all JavaScript is in external files
 - **Rate Limiting** — Auth routes (`/login`, `/register`) are rate-limited to 20 requests per 15-minute window
 
@@ -58,7 +56,7 @@ src/
 │       └── favicon.svg      — Favicon
 └── uploads/pdfs/            — Generated PDF output directory
 agent/                       — Project agent configuration
-specs/                       — Project specification markdown files (architecture, auth, database, frontend, testing, deployment)
+specs/                       — Project specification markdown files (architecture, auth, database, frontend, testing)
 test/                        — Jest test suites (40 tests across 6 files)
 ```
 
@@ -70,10 +68,10 @@ test/                        — Jest test suites (40 tests across 6 files)
 ## Local Development Setup
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/techno-yeti/specit
 cd equipit
 npm install
-cp .env.example .env
+nano .env
 ```
 
 Edit `.env` with your local MongoDB connection string:
@@ -154,7 +152,7 @@ Pending → Fulfilled (PDF generated) → Dispatched (locked)
 
 ## Environment Notice
 
-A `.env` file is required to run the application. Copy `.env.example` to `.env` and populate all required variables (`MONGO_URI`, `JWT_SECRET`, `APP_BASE_URL`). The application will throw an error at startup if any required variable is missing.
+A `.env` file is required to run the application. Overwrite all variables found in `.env` (`MONGO_URI`, `JWT_SECRET`, `APP_BASE_URL`). The application will throw an error at startup if any required variable is missing.
 
 ## Server Deployment
 
