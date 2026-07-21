@@ -22,6 +22,24 @@ Warehouse Equipment Management System — a Node.js + Express + MongoDB applicat
 - **Security Headers** — CSP (Content Security Policy) via Helmet blocks inline scripts and inline event handlers; all JavaScript is in external files
 - **Rate Limiting** — Auth routes (`/login`, `/register`) are rate-limited to 20 requests per 15-minute window
 
+## Showcase
+
+![Dashboard showing stats cards, search bar, and planned requests list filtered by date](src/public/images/screens/dashboard.png)
+
+![Equipment Types list page with Add/Edit/Delete buttons](src/public/images/screens/equipment.png)
+
+![Templates list page showing template cards with equipment breakdown](src/public/images/screens/templates.png)
+
+![New Request form with template selection, depot dropdown, planned date, and supplier fields](src/public/images/screens/request.png)
+
+![Fulfillment form showing the Box Number and Bay Number fields](src/public/images/screens/fulfill.png)
+
+![Security Dispatch page with barcode input field and depot-filtered requests table](src/public/images/screens/security.png)
+
+![User Management page showing user table with role dropdowns and Approve/Deny buttons](src/public/images/screens/user.png)
+
+![Settings page showing domain configuration textarea](src/public/images/screens/settings.png)
+
 ## Directory Layout
 
 ```
