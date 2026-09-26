@@ -13,7 +13,8 @@ If any spec file contradicts this contract, the contract takes priority unless t
 3. Produce a **Node.js + Express** backend with **server-rendered views** (EJS).
 4. Use **MongoDB** via Mongoose and **TailwindCSS** (compiled via PostCSS).
 5. Implement authentication as defined in `/spec/auth/`.
-6. Do not introduce client-side frameworks (React, Vue, Angular, etc.), inline `<script>` tags, or inline event handlers.
+6. Use **Alpine.js** for client-side interactivity. It is the only permitted client-side framework; do not introduce others (React, Vue, Angular, etc.).
+7. Do not use inline `<script>` tags or inline HTML event handlers (`onclick`, etc.). Load Alpine.js and all of its component logic from external files under `src/public/js/`.
 
 ---
 
@@ -59,6 +60,7 @@ Implement all requirements in `/spec/app/security.md`, including:
 - bcrypt password hashing
 - Secure cookies (`httpOnly`, `secure`, `sameSite`)
 - No unsanitised user-controlled data rendered in HTML
+- Alpine.js must not weaken CSP: use the CSP-compatible build (`@alpinejs/csp`) or otherwise avoid `eval`/`new Function`, and never add `'unsafe-eval'` to the CSP.
 
 When ambiguous, choose the **most secure** interpretation.
 
@@ -91,7 +93,10 @@ Implement endpoints per `/spec/api/endpoints.md`, validate requests per `/spec/a
 
 - Use EJS templates with Tailwind utility classes.
 - Follow `/spec/frontend/layout.md`, `/spec/frontend/components.md`, `/spec/frontend/forms.md`, and `/spec/frontend/accessibility.md`.
-- No inline styles, no client-side frameworks, no uncompiled Tailwind in production.
+- Use **Alpine.js** for client-side interactivity. It is the only permitted client-side framework; no React, Vue, Angular, or similar.
+- Keep all `x-data`, `x-on`, and `x-model` behaviour in external files under `src/public/js/` (register components with `Alpine.data` and initialise on `alpine:init`). Never use inline `<script>` tags or inline event handlers.
+- Templates stay server-rendered: use Alpine.js to progressively enhance existing markup, not to render full pages or fetch primary page content.
+- No inline styles and no uncompiled Tailwind in production.
 
 ---
 
